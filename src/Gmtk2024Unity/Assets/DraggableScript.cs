@@ -46,6 +46,8 @@ public class DraggableScript : MonoBehaviour
         int layerMask;
         layerMask = 1 << LayerMask.NameToLayer("Draggable");
 
+        var previousTarget = _target;
+
         var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Input.mousePosition), 100, layerMask);
         if (rayHit.collider && rayHit.collider.GetComponent<DraggableScript>())
         {
@@ -56,6 +58,11 @@ public class DraggableScript : MonoBehaviour
         {
             //print("out");
             _target = null;
+        }
+
+        if (previousTarget != _target)
+        {
+            GameEvents.Raise(GameEvents.OnDraggableHover, _target != null);
         }
     }
 
