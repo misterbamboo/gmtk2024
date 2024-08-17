@@ -70,7 +70,7 @@ public class DraggableScript : MonoBehaviour
             SnapPointScript.ShowAll();
             //print("start drag");
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (_drag && Input.GetMouseButtonUp(0))
         {
             _target = null;
             _drag = false;
@@ -127,7 +127,7 @@ public class DraggableScript : MonoBehaviour
         _snapTarget = snapPointScript.transform;
         _snapTargetOffset = snapOffset;
 
-        print("_snapTargetOffset: " + _snapTargetOffset);
+        //print("_snapTargetOffset: " + _snapTargetOffset);
 
         _snapTime = 0;
         _initialLerpPosition = transform.position;

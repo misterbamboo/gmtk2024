@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +41,6 @@ public class SnapPointScript : MonoBehaviour
 
     private float maxDistance;
 
-
     private void Awake()
     {
         SnapPointScript.Register(this);
@@ -67,7 +65,7 @@ public class SnapPointScript : MonoBehaviour
             var distance = Vector3.Distance(thisSnapCenter, otherSnapCenter);
             if (distance > maxDistance)
             {
-                print("distance: " + distance + " > maxDistance: " + maxDistance);
+                //print("distance: " + distance + " > maxDistance: " + maxDistance);
                 TriggerUnsnap(currentDraggable);
             }
         }
@@ -75,17 +73,17 @@ public class SnapPointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.name + " enters in " + this.name);
+        //print(collision.name + " enters in " + this.name);
         var otherSnap = collision.GetComponent<SnapPointScript>();
         if (otherSnap)
         {
-            print("snap enter");
+            //print("snap enter");
             maxDistance = otherSnap.distance + distance;
 
             var otherDraggable = otherSnap.GetComponentInParent<DraggableScript>();
             if (otherDraggable)
             {
-                print("draggable enter");
+                //print("draggable enter");
                 TriggerSnap(otherDraggable, otherSnap);
             }
         }
@@ -98,8 +96,7 @@ public class SnapPointScript : MonoBehaviour
 
     private void TriggerSnap(DraggableScript otherDraggable, SnapPointScript otherSnap)
     {
-        //print("snap " + draggable.name + " to " + this.name);
-        print("otherSnapPos: " + otherSnap.transform.position + " otherDraggablePos: " + otherDraggable.transform.position);
+        //print("otherSnapPos: " + otherSnap.transform.position + " otherDraggablePos: " + otherDraggable.transform.position);
         currentDraggableOffset = otherSnap.transform.position - otherDraggable.transform.position;
         currentDraggable = otherDraggable;
         otherDraggable.SnapTo(this, currentDraggableOffset);
@@ -119,6 +116,4 @@ public class SnapPointScript : MonoBehaviour
         mousePos.z = 0;
         return mousePos;
     }
-
-
 }
