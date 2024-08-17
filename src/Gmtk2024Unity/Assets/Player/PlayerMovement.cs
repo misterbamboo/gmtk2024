@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer animatedSprite;
+
+    [SerializeField] SpriteRenderer leftWallSprite;
+    [SerializeField] SpriteRenderer rightWallSprite;
+
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float releaseDownForce = 1f;
     [SerializeField] float lateralForce = 5f;
@@ -13,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private PlayerFloorDetection playerFloorDetection;
-
+    private Animator animator;
     private Vector2 velocity = Vector2.zero;
+
+    private float timeInactive;
 
     public bool IsSpacebarPressed { get; private set; } = false;
     public bool SlopeBlockJump { get; private set; }
@@ -23,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         playerFloorDetection = GetComponentsInChildren<PlayerFloorDetection>().FirstOrDefault();
+        animator = GetComponentsInChildren<Animator>().FirstOrDefault();
+
+        leftWallSprite.gameObject.SetActive(false);
+        rightWallSprite.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,7 +64,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 SlopeBlockJump = true;
             }
+            animatedSprite.flipX = false;
         }
+
         if (horizontal < 0)
         {
             if (!CheckBlockedBySlopeAngle(Vector3.left))
@@ -64,7 +77,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 SlopeBlockJump = true;
             }
+            animatedSprite.flipX = true;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(velocity.x));
+        if (velocity.magnitude < 0.02)
+        {
+            timeInactive += Time.deltaTime;
+        }
+        else
+        {
+            timeInactive = 0;
+        }
+        animator.SetBool("Sleeping", timeInactive > 5);
     }
 
     private bool CheckBlockedBySlopeAngle(Vector3 checkDirection)
@@ -117,6 +142,16 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             IsSpacebarPressed = false;
+        }
+
+        animator.SetBool("Jumping", !playerFloorDetection.OnFloor);
+        if (!playerFloorDetection.OnFloor)
+        {
+            bool jumpRaising = velocity.y > 1f;
+            animator.SetBool("JumpRaising", jumpRaising);
+
+            bool jumpFalling = rb2d.velocity.y < 0f; // want to check falling with actual real velocity
+            animator.SetBool("JumpFalling", jumpFalling);
         }
     }
 }
