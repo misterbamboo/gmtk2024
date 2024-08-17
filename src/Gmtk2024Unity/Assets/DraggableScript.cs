@@ -9,8 +9,10 @@ public class DraggableScript : MonoBehaviour
     private bool _drag;
 
     private Transform _snapTarget;
+    private Vector3 _snapTargetOffset;
     private float _snapTime;
     private Vector3 _initialLerpPosition;
+    private Rigidbody2D rb2d;
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class DraggableScript : MonoBehaviour
 
     void Start()
     {
-
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -62,13 +64,30 @@ public class DraggableScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _target != null)
         {
             _drag = true;
+            rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
+            rb2d.freezeRotation = true;
+            SnapPointScript.ShowAll();
             //print("start drag");
         }
         else if (Input.GetMouseButtonUp(0))
         {
             _target = null;
             _drag = false;
-            _snapTarget = null;
+            SnapPointScript.HideAll();
+            rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
+
+            if (_snapTarget == null)
+            {
+                rb2d.freezeRotation = false;
+                rb2d.isKinematic = false;
+            }
+            else
+            {
+                rb2d.freezeRotation = true;
+                rb2d.isKinematic = true;
+            }
             //print("end drag");
         }
     }
@@ -86,7 +105,8 @@ public class DraggableScript : MonoBehaviour
         // make animation bounce
         t = Ease.EaseOverBack(t);
 
-        var snapAnimPos = Vector3.Lerp(_initialLerpPosition, _snapTarget.position, t); // 0.1f is the time to snap
+        var targetPos = _snapTarget.position - _snapTargetOffset;
+        var snapAnimPos = Vector3.Lerp(_initialLerpPosition, targetPos, t); // 0.1f is the time to snap
         transform.position = snapAnimPos;
     }
 
@@ -102,9 +122,12 @@ public class DraggableScript : MonoBehaviour
         //print(Input.mousePosition.ToString() + " " + mousePos.ToString() + " " + pos.ToString() + " " + _target.position.ToString());
     }
 
-    internal void SnapTo(SnapPointScript snapPointScript)
+    internal void SnapTo(SnapPointScript snapPointScript, Vector3 snapOffset)
     {
         _snapTarget = snapPointScript.transform;
+        _snapTargetOffset = snapOffset;
+
+        print("_snapTargetOffset: " + _snapTargetOffset);
 
         _snapTime = 0;
         _initialLerpPosition = transform.position;
