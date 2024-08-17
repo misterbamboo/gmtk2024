@@ -1,0 +1,411 @@
+fileFormatVersion: 2
+guid: 6955c90af64ae2b46a1100ba13d143df
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Maison1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 331
+      height: 210
+    spriteID: 99ed2fd41e9ab1d4c899a8a5114bc6f9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 118, y: 670}
+  - name: Maison1-couleur
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 635
+      y: 222
+      width: 283
+      height: 205
+    spriteID: 0e011f966f5d36e49ab7649ecd5b4fff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 635, y: 222}
+    spritePosition: {x: 138, y: 671}
+  - name: Maison2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 343
+      y: 4
+      width: 331
+      height: 210
+    spriteID: 762e857ed9f49aa448610749b6ab7de5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 343, y: 4}
+    spritePosition: {x: 500, y: 668}
+  - name: Maison2-couleur
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 440
+      width: 283
+      height: 205
+    spriteID: fb503de367c922c4d9f5b3abb9c0e263
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 440}
+    spritePosition: {x: 520, y: 669}
+  - name: Maison3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 682
+      y: 4
+      width: 331
+      height: 210
+    spriteID: e3f408225cc303a41bcc978cfdb85bd6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 682, y: 4}
+    spritePosition: {x: 117, y: 401}
+  - name: Maison3-couleur
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 295
+      y: 440
+      width: 283
+      height: 205
+    spriteID: 0cdb5a9d37607a24f8436c0ceb0e879f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 295, y: 440}
+    spritePosition: {x: 137, y: 402}
+  - name: Maison4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 222
+      width: 331
+      height: 210
+    spriteID: 8e1dc5f2499fdaa4fbc7f6ebdccfbccb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 222}
+    spritePosition: {x: 503, y: 395}
+  - name: Maison4-couleur
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 343
+      y: 222
+      width: 284
+      height: 205
+    spriteID: 8b4dc6d7ea3ff9640916d93a49ddd5ee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 343, y: 222}
+    spritePosition: {x: 522, y: 396}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  padding: 4
+  spriteSizeExpand: 0
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Maison1
+    spriteName: Maison1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 99ed2fd41e9ab1d4c899a8a5114bc6f9
+    layerID: 0
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison1-couleur
+    spriteName: Maison1-couleur
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0e011f966f5d36e49ab7649ecd5b4fff
+    layerID: -757184952
+    mosaicPosition: {x: 635, y: 222}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison2
+    spriteName: Maison2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 762e857ed9f49aa448610749b6ab7de5
+    layerID: -914823047
+    mosaicPosition: {x: 343, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison2-couleur
+    spriteName: Maison2-couleur
+    isGroup: 0
+    parentIndex: -1
+    spriteID: fb503de367c922c4d9f5b3abb9c0e263
+    layerID: -762687673
+    mosaicPosition: {x: 4, y: 440}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison3
+    spriteName: Maison3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e3f408225cc303a41bcc978cfdb85bd6
+    layerID: -914823046
+    mosaicPosition: {x: 682, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison3-couleur
+    spriteName: Maison3-couleur
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0cdb5a9d37607a24f8436c0ceb0e879f
+    layerID: -764017210
+    mosaicPosition: {x: 295, y: 440}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison4
+    spriteName: Maison4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8e1dc5f2499fdaa4fbc7f6ebdccfbccb
+    layerID: -914823049
+    mosaicPosition: {x: 4, y: 222}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Maison4-couleur
+    spriteName: Maison4-couleur
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8b4dc6d7ea3ff9640916d93a49ddd5ee
+    layerID: -769798971
+    mosaicPosition: {x: 343, y: 222}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: PXL_20240816_230111764
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: cf81fbec9f7ca4047b28658190274230
+    layerID: -1006477190
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Papier
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 99fa13ffd6010574683719aa01ecfdb7
+    layerID: 765473083
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
