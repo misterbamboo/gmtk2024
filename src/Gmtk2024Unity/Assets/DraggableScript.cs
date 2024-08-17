@@ -37,8 +37,6 @@ public class DraggableScript : MonoBehaviour
         }
     }
 
-
-
     private void LookForTarget()
     {
         if (_drag) return;
@@ -70,6 +68,7 @@ public class DraggableScript : MonoBehaviour
         {
             _target = null;
             _drag = false;
+            _snapTarget = null;
             //print("end drag");
         }
     }
