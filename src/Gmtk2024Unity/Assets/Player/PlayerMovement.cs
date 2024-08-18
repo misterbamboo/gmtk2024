@@ -145,13 +145,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetBool("Jumping", !playerFloorDetection.OnFloor);
-        if (!playerFloorDetection.OnFloor)
-        {
-            bool jumpRaising = velocity.y > 1f;
-            animator.SetBool("JumpRaising", jumpRaising);
+        
+        bool jumpRaising = velocity.y > 1f;
+        animator.SetBool("JumpRaising", jumpRaising);
 
-            bool jumpFalling = rb2d.velocity.y < 0f; // want to check falling with actual real velocity
-            animator.SetBool("JumpFalling", jumpFalling);
-        }
+        bool jumpFalling = rb2d.velocity.y < 0.02f; // want to check falling with actual real velocity
+        animator.SetBool("JumpFalling", jumpFalling);
     }
 }
