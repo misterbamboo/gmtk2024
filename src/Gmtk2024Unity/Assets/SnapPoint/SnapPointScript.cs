@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,6 +58,15 @@ public class SnapPointScript : MonoBehaviour
     {
         if (currentDraggable)
         {
+            // Stop checking for unsnap when the draggable is not longer being dragged
+            if (!currentDraggable.IsDragged)
+            {
+                currentDraggable = null;
+                currentDraggableOffset = Vector3.zero;
+                return;
+            }
+
+
             Vector3 mousePos = GetMouseWorldPos();
             var otherDraggableCenter = mousePos;
             var otherSnapCenter = otherDraggableCenter + currentDraggableOffset;
@@ -65,7 +75,7 @@ public class SnapPointScript : MonoBehaviour
             var distance = Vector3.Distance(thisSnapCenter, otherSnapCenter);
             if (distance > maxDistance)
             {
-                //print("distance: " + distance + " > maxDistance: " + maxDistance);
+                print("distance: " + distance + " > maxDistance: " + maxDistance);
                 TriggerUnsnap(currentDraggable);
             }
         }
@@ -97,15 +107,17 @@ public class SnapPointScript : MonoBehaviour
     private void TriggerSnap(DraggableScript otherDraggable, SnapPointScript otherSnap)
     {
         print("otherSnapPos: " + otherSnap.transform.position + " otherDraggablePos: " + otherDraggable.transform.position);
-        print("this: " + this.name + " otherSnap " + otherSnap.name + " otherDraggable: " + otherDraggable.name + " offset: " + currentDraggableOffset);
         currentDraggableOffset = otherSnap.transform.position - otherDraggable.transform.position;
         currentDraggable = otherDraggable;
+        print("this: " + this.name + " otherSnap " + otherSnap.name + " otherDraggable: " + otherDraggable.name + " offset: " + currentDraggableOffset);
         otherDraggable.SnapTo(this, currentDraggableOffset);
     }
 
     private void TriggerUnsnap(DraggableScript draggable)
     {
         //print("unsnap" + draggable.name + " to " + this.name);
+        currentDraggableOffset = Vector3.zero;
+        currentDraggable = null;
         draggable.Unsnap();
     }
 
@@ -116,5 +128,11 @@ public class SnapPointScript : MonoBehaviour
         var mousePos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);
         mousePos.z = 0;
         return mousePos;
+    }
+
+    internal void AssignDraggable(DraggableScript draggableScript)
+    {
+        currentDraggable = draggableScript;
+        currentDraggableOffset = transform.position - draggableScript.transform.position;
     }
 }

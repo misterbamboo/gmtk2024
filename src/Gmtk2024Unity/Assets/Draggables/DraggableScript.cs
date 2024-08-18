@@ -1,16 +1,18 @@
-using System;
 using UnityEngine;
 
 public class DraggableScript : MonoBehaviour
 {
+    public bool IsDragged => _drag;
+    private bool _drag;
+
     [SerializeField] bool activateLogs = false;
     [SerializeField] float snapSpeed = 20f;
 
     private Camera _mainCamera;
     private Transform _target;
-    private bool _drag;
+    private Transform _hover;
 
-    private Transform _snapTarget;
+    private SnapPointScript _snap;
     private Vector3 _snapTargetOffset;
     private float _snapTime;
     private Vector3 _initialLerpPosition;
@@ -28,10 +30,10 @@ public class DraggableScript : MonoBehaviour
 
     void Update()
     {
-        LookForTarget();
+        CheckIfHover();
         UpdateDragStatus();
 
-        if (_snapTarget)
+        if (_snap != null)
         {
             FollowSnap();
         }
@@ -41,44 +43,49 @@ public class DraggableScript : MonoBehaviour
         }
     }
 
-    private void LookForTarget()
+    private void CheckIfHover()
     {
-        if (_drag) return;
+        //if (_drag) return;
 
         int layerMask;
         layerMask = 1 << LayerMask.NameToLayer("Draggable");
 
-        var previousTarget = _target;
+        var previousHover = _hover;
 
         var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Input.mousePosition), 100, layerMask);
         if (rayHit.collider && rayHit.collider.GetComponent<DraggableScript>())
         {
             Log("in");
-            _target = rayHit.collider.transform;
+            _hover = rayHit.collider.transform;
         }
         else
         {
             Log("out");
-            _target = null;
+            _hover = null;
         }
 
-        if (previousTarget != _target)
+        if (previousHover != _hover)
         {
-            GameEvents.Raise(GameEvents.OnDraggableHover, _target != null);
+            GameEvents.Raise(GameEvents.OnDraggableHover, _hover != null);
         }
     }
 
-
-
     private void UpdateDragStatus()
     {
-        if (Input.GetMouseButtonDown(0) && _target != null)
+        if (Input.GetMouseButtonDown(0) && _hover != null)
         {
+            _target = _hover;
             _drag = true;
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
             rb2d.freezeRotation = true;
             SnapPointScript.ShowAll();
+
+            if (_snap != null)
+            {
+                _snap.AssignDraggable(this);
+            }
+
             Log("start drag");
         }
         else if (_drag && Input.GetMouseButtonUp(0))
@@ -89,7 +96,7 @@ public class DraggableScript : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
 
-            if (_snapTarget == null)
+            if (_snap == null)
             {
                 rb2d.freezeRotation = false;
                 rb2d.isKinematic = false;
@@ -105,7 +112,7 @@ public class DraggableScript : MonoBehaviour
 
     private void FollowSnap()
     {
-        Log($"followSnap - [this: {this.name}, _snapTarget: {_snapTarget.name}]");
+        Log($"followSnap - [this: {this.name}, _snapTarget: {_snap.name}] : {_snapTime}s");
         _snapTime += Time.deltaTime;
         if (_snapTime > 1)
         {
@@ -117,7 +124,7 @@ public class DraggableScript : MonoBehaviour
         // make animation bounce
         t = Ease.EaseOverBack(t);
 
-        var targetPos = _snapTarget.position - _snapTargetOffset;
+        var targetPos = _snap.transform.position - _snapTargetOffset;
         var snapAnimPos = Vector3.Lerp(_initialLerpPosition, targetPos, t); // 0.1f is the time to snap
         transform.position = snapAnimPos;
     }
@@ -137,7 +144,7 @@ public class DraggableScript : MonoBehaviour
 
     internal void SnapTo(SnapPointScript snapPointScript, Vector3 snapOffset)
     {
-        _snapTarget = snapPointScript.transform;
+        _snap = snapPointScript;
         _snapTargetOffset = snapOffset;
 
         Log("_snapTargetOffset: " + _snapTargetOffset);
@@ -148,7 +155,7 @@ public class DraggableScript : MonoBehaviour
 
     internal void Unsnap()
     {
-        _snapTarget = null;
+        _snap = null;
     }
 
     private void Log(string log)

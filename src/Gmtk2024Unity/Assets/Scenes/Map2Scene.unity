@@ -1248,6 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505a51e3dd428364d810e322887b8ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateLogs: 0
   snapSpeed: 20
 --- !u!61 &1482905485
 BoxCollider2D:
@@ -1509,6 +1510,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2352980081948201491, guid: 4e66b8a5d35877b4282db482409e0c2b,
+        type: 3}
+      propertyPath: activateLogs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2671171654242435863, guid: 4e66b8a5d35877b4282db482409e0c2b,
         type: 3}
       propertyPath: m_LocalPosition.x
