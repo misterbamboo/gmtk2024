@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3130497907339730166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2909387219771264728}
+  - component: {fileID: 2461303828650737861}
+  m_Layer: 0
+  m_Name: LadderOptions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2909387219771264728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130497907339730166}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -26.884277, y: 27.834045, z: -6.4683356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2461303828650737861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130497907339730166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4341164a8abaac846a678cd0d30a5697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ladderOptions:
+  - spriteRenderer: {fileID: 705269180, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 075c959dff88fb549be7f189cb81e0c5, type: 3}
+  - spriteRenderer: {fileID: 1535999873, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: ec2c0c3b85a115b41b6a233c17dd1818, type: 3}
+  - spriteRenderer: {fileID: 1057168347, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 8635c72768ab5714da2a22ece4df63c3, type: 3}
+  - spriteRenderer: {fileID: 551857981, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: c77b1f4bd91e1294cb17afad5c008337, type: 3}
+  - spriteRenderer: {fileID: -1798547623, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 0f246388d7e117d4b9cf54bc0029d320, type: 3}
+  - spriteRenderer: {fileID: 717327671, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 5891106e26a23d149aea70748b005b00, type: 3}
+  - spriteRenderer: {fileID: 1065891891, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: f259356410e393249ad68fbed6b3299f, type: 3}
+  - spriteRenderer: {fileID: -1083448584, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 8f4d8a0e79c8a2840b22288f00b7ad60, type: 3}
+  - spriteRenderer: {fileID: -1481927665, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 771fdb03c48a46e4ca887e00a10f0233, type: 3}
+  - spriteRenderer: {fileID: -576518492, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: c969cf8218f49fd4897982b81d40e37e, type: 3}
+  - spriteRenderer: {fileID: -1522293461, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 2ec14d19b9ff4664289d8fa6b6365380, type: 3}
+  - spriteRenderer: {fileID: -824538793, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: ca16936a3ef15284ab88944750859c78, type: 3}
+  - spriteRenderer: {fileID: 1865700079, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 8abfe2fd5d596c14fb08142880130269, type: 3}
+  - spriteRenderer: {fileID: 1683517148, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+    prefab: {fileID: 3791459998893230208, guid: 27a17bcdb96a49a47aa0d5fada2c1704, type: 3}

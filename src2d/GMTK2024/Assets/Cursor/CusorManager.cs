@@ -55,8 +55,6 @@ public class CusorManager : MonoBehaviour
 
     private void UpdateCursor()
     {
-        print($"CursorHoverDraggable: {CursorHoverDraggable} CursorMouseDown: {CursorMouseDown}");
-
         var mouseUpTexture = CursorHoverDraggable ? _selectCursorDefaultTexture : _cursorDefaultTexture;
         var mouseDownTexture = CursorHoverDraggable ? _selectCursorDefaultClickTexture : _cursorDefaultClickTexture;
 
