@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SnapGroup : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class SnapGroup : MonoBehaviour
     private SnapGroupDrag snapGroupDrag;
     private SnapGroupMouseRotation snapGroupMouseRotation;
     private List<Snap> innerSnaps;
+    private IGameManager gameManager;
 
     private void Start()
     {
@@ -22,6 +21,7 @@ public class SnapGroup : MonoBehaviour
         mouseHoverCheck = new SnapGroupMouseHoverCheck(transform, mainCamera, colliderZone);
         snapGroupDrag = new SnapGroupDrag(transform, mainCamera);
         snapGroupMouseRotation = new SnapGroupMouseRotation(rb2d);
+        gameManager = GameManager.Instance;
     }
 
     private void Update()
@@ -112,7 +112,7 @@ public class SnapGroup : MonoBehaviour
         if (rb2d == null) return;
 
         var anyInnerSnapIsSnapped = innerSnaps.Any(s => s != null && s.SnapTo != null);
-        if (snapGroupDrag.IsDragging || anyInnerSnapIsSnapped)
+        if (gameManager.BuildActive || snapGroupDrag.IsDragging || anyInnerSnapIsSnapped)
         {
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;

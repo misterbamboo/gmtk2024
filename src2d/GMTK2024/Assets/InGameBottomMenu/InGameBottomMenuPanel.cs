@@ -140,6 +140,7 @@ public class InGameBottomMenuPanel : MonoBehaviour
     public void Player_ClickBuild()
     {
         this.open = !this.open;
+        GameEvents.Raise(GameEvents.OnBuildModeActiveChanged, this.open);
     }
 
     public void Player_ClickPlay()

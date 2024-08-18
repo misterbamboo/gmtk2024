@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class GameEvents
 {
     public const string OnDraggableHover = "draggable.hover";
+    public const string OnBuildModeActiveChanged = "build.mode.active";
 
     public static void SubscribeTo<T>(string eventName, Action<T> action)
     {
