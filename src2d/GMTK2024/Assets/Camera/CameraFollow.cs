@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
             // Clamp camera position
             pos.x = Mathf.Clamp(pos.x, bottomLeft.x, topRight.x);
             pos.y = Mathf.Clamp(pos.y, bottomLeft.y, topRight.y);
-
+            pos.z = -1;
             transform.position = pos;
         }
     }
