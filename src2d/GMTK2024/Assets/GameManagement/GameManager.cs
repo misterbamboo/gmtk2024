@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void OnBuildModeActiveChanged(bool buildActive)
     {
-        print("buildActive: " + buildActive);
         this.buildActive = buildActive;
     }
 }
