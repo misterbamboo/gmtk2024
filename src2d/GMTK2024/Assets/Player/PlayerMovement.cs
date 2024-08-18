@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform slopeCheckCenter;
     [SerializeField] float slopeCheckLength = 0.5f;
     [SerializeField] float maxSlopeAngle = 50f;
-
+    private IGameManager gameManager;
     private Rigidbody2D rb2d;
     private PlayerFloorDetection playerFloorDetection;
     private Animator animator;
@@ -28,9 +28,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+
         rb2d = GetComponent<Rigidbody2D>();
         playerFloorDetection = GetComponentsInChildren<PlayerFloorDetection>().FirstOrDefault();
         animator = GetComponentsInChildren<Animator>().FirstOrDefault();
+
+        gameManager = GameManager.Instance;
 
         leftWallSprite.gameObject.SetActive(false);
         rightWallSprite.gameObject.SetActive(false);
@@ -41,13 +44,31 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity = Vector2.zero;
 
-        HorizontalMovement();
-        JumpMovement();
+        UpdateStaticMode();
+        if (!gameManager.BuildActive)
+        {
+            HorizontalMovement();
+            JumpMovement();
 
-        var currentVelocity = rb2d.velocity;
-        currentVelocity.x = 0;
-        var newVelocity = currentVelocity + velocity;
-        rb2d.velocity = newVelocity;
+            var currentVelocity = rb2d.velocity;
+            currentVelocity.x = 0;
+            var newVelocity = currentVelocity + velocity;
+            rb2d.velocity = newVelocity;
+        }
+    }
+
+    private void UpdateStaticMode()
+    {
+        if (gameManager.BuildActive && rb2d.bodyType != RigidbodyType2D.Static)
+        {
+            rb2d.bodyType = RigidbodyType2D.Static;
+            animator.speed = 0;
+        }
+        else if (!gameManager.BuildActive && rb2d.bodyType != RigidbodyType2D.Dynamic)
+        {
+            rb2d.bodyType = RigidbodyType2D.Dynamic;
+            animator.speed = 1;
+        }
     }
 
     private void HorizontalMovement()
@@ -56,27 +77,19 @@ public class PlayerMovement : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         if (horizontal > 0)
         {
-            if (!CheckBlockedBySlopeAngle(Vector3.right))
-            {
-                velocity += horizontal * Vector2.right * lateralForce;
-            }
-            else
-            {
-                SlopeBlockJump = true;
-            }
+            SlopeBlockJump = CheckBlockedBySlopeAngle(Vector3.right);
+            var force = SlopeBlockJump ? lateralForce * 0f : lateralForce;
+            velocity += horizontal * Vector2.right * force;
+
             animatedSprite.flipX = false;
         }
 
         if (horizontal < 0)
         {
-            if (!CheckBlockedBySlopeAngle(Vector3.left))
-            {
-                velocity += horizontal * Vector2.right * lateralForce;
-            }
-            else
-            {
-                SlopeBlockJump = true;
-            }
+            SlopeBlockJump = CheckBlockedBySlopeAngle(Vector3.left);
+            var force = SlopeBlockJump ? lateralForce * 0f : lateralForce;
+            velocity += horizontal * Vector2.right * force;
+
             animatedSprite.flipX = true;
         }
 
@@ -99,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawLine(slopeCheckCenter.position, slopeCheckCenter.position + checkDirection * slopeCheckLength, Color.red);
         if (hit && hit.collider)
         {
+            //print("hit: " + hit.collider.name);
+
             var perc = Vector2.Perpendicular(hit.normal);
             var absPerc = new Vector2(Mathf.Abs(perc.x), Mathf.Abs(perc.y));
             // get angule of the normal
@@ -111,11 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     private static int GetFullHitMask()
     {
-        var mask1 = LayerMask.GetMask("Draggable");
-        var mask2 = LayerMask.GetMask("Floor");
-        var mask3 = LayerMask.GetMask("Default");
-        var fullMask = mask1 | mask2 | mask3;
-        return fullMask;
+        return LayerMask.GetMask("Default");
     }
 
     private void JumpMovement()
@@ -125,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!IsSpacebarPressed && playerFloorDetection.OnFloor)
             {
-                if (!SlopeBlockJump)
+                //if (!SlopeBlockJump)
                 {
                     velocity += Vector2.up * jumpForce;
                 }
@@ -136,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!playerFloorDetection.OnFloor)
             {
-                if (!SlopeBlockJump)
+                //if (!SlopeBlockJump)
                 {
                     velocity += Vector2.down * releaseDownForce;
                 }
@@ -145,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetBool("Jumping", !playerFloorDetection.OnFloor);
-        
+
         bool jumpRaising = velocity.y > 1f;
         animator.SetBool("JumpRaising", jumpRaising);
 

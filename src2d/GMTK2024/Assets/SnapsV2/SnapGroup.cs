@@ -11,8 +11,10 @@ public class SnapGroup : MonoBehaviour
     private List<Snap> innerSnaps;
     private IGameManager gameManager;
 
-    private void Start()
+    private bool initialized = false;
+    private void Init()
     {
+        if (initialized) return;
         var mainCamera = Camera.main;
         var colliderZone = GetComponent<PolygonCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -22,10 +24,13 @@ public class SnapGroup : MonoBehaviour
         snapGroupDrag = new SnapGroupDrag(transform, mainCamera);
         snapGroupMouseRotation = new SnapGroupMouseRotation(rb2d);
         gameManager = GameManager.Instance;
+        initialized = true;
     }
 
     private void Update()
     {
+        Init();
+
         mouseHoverCheck.CheckHover();
         snapGroupDrag.CheckRequestDrag(mouseHoverCheck.IsHover);
 
@@ -112,6 +117,11 @@ public class SnapGroup : MonoBehaviour
         if (rb2d == null) return;
 
         var anyInnerSnapIsSnapped = innerSnaps.Any(s => s != null && s.SnapTo != null);
+        if (gameManager == null || snapGroupDrag == null)
+        {
+            print(gameManager + " | " + snapGroupDrag);
+        }
+
         if (gameManager.BuildActive || snapGroupDrag.IsDragging || anyInnerSnapIsSnapped)
         {
             rb2d.velocity = Vector2.zero;

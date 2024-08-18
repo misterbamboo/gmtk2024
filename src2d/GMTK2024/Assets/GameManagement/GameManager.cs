@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public interface IGameManager
 {
     bool BuildActive { get; }
+
+    void GameOver();
 }
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -29,5 +32,10 @@ public class GameManager : MonoBehaviour, IGameManager
     private void OnBuildModeActiveChanged(bool buildActive)
     {
         this.buildActive = buildActive;
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }

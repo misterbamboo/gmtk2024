@@ -1409,6 +1409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329686558005275478}
+  - component: {fileID: 2460461938350277561}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -1476,6 +1477,20 @@ Transform:
   - {fileID: 6834842782111817534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2460461938350277561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107241523852141541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70df603ff718d444a977335b53dade2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottomLeft: {x: 10, y: 5}
+  topRight: {x: 74.54, y: 11.68}
 --- !u!1 &3396369780465315216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,7 +1591,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.7
-  lengthTransform: {fileID: 0}
 --- !u!1 &3430589680265177794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.3
-  lengthTransform: {fileID: 0}
 --- !u!1 &5571698368985884908
 GameObject:
   m_ObjectHideFlags: 0

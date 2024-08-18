@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -7,6 +8,8 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] Transform target;
     [SerializeField] float yOffset = 3.5f;
+
+    private Vector2 bottomLeft, topRight;
 
     private void Awake()
     {
@@ -23,7 +26,19 @@ public class CameraFollow : MonoBehaviour
         if (target)
         {
             // Camera follows the player
-            transform.position = new Vector3(target.position.x, target.position.y + yOffset, transform.position.z);
+            var pos = new Vector3(target.position.x, target.position.y + yOffset, transform.position.z);
+
+            // Clamp camera position
+            pos.x = Mathf.Clamp(pos.x, bottomLeft.x, topRight.x);
+            pos.y = Mathf.Clamp(pos.y, bottomLeft.y, topRight.y);
+
+            transform.position = pos;
         }
+    }
+
+    public void UpdateClamp(Vector2 bottomLeft, Vector2 topRight)
+    {
+        this.bottomLeft = bottomLeft;
+        this.topRight = topRight;
     }
 }

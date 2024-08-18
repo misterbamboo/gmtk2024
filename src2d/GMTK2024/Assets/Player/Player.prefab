@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 105853364394537173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.326, z: 0}
+  m_LocalPosition: {x: 0, y: 0.138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,8 +58,8 @@ Transform:
   m_GameObject: {fileID: 483383580155477053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.726, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.368, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6196464444418910612}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 6196464444418910612}
   - component: {fileID: 951358314388122911}
   - component: {fileID: 644852085413675213}
-  - component: {fileID: 710352449765172987}
+  - component: {fileID: 5758659852273736681}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -279,7 +279,7 @@ MonoBehaviour:
   releaseDownForce: 0.1
   lateralForce: 5
   slopeCheckCenter: {fileID: 6151779841904673558}
-  slopeCheckLength: 0.5
+  slopeCheckLength: 0.15
   maxSlopeAngle: 50
 --- !u!50 &644852085413675213
 Rigidbody2D:
@@ -308,8 +308,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &710352449765172987
-CapsuleCollider2D:
+--- !u!61 &5758659852273736681
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -340,9 +340,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.50236464}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0.26}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.39}
+  m_EdgeRadius: 0
 --- !u!1 &7699424074371386386
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,9 +502,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.58}
+  m_Offset: {x: 0, y: -0.64}
   serializedVersion: 2
-  m_Radius: 0.31
+  m_Radius: 0.0923555
 --- !u!114 &1575251719589888789
 MonoBehaviour:
   m_ObjectHideFlags: 0
