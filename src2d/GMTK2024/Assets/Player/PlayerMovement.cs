@@ -15,10 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform slopeCheckCenter;
     [SerializeField] float slopeCheckLength = 0.5f;
     [SerializeField] float maxSlopeAngle = 50f;
-    private IGameManager gameManager;
+
     private Rigidbody2D rb2d;
     private PlayerFloorDetection playerFloorDetection;
     private Animator animator;
+    private IGameManager gameManager;
     private Vector2 velocity = Vector2.zero;
 
     private float timeInactive;
@@ -28,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
         rb2d = GetComponent<Rigidbody2D>();
         playerFloorDetection = GetComponentsInChildren<PlayerFloorDetection>().FirstOrDefault();
         animator = GetComponentsInChildren<Animator>().FirstOrDefault();

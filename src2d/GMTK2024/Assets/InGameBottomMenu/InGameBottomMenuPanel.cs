@@ -134,20 +134,27 @@ public class InGameBottomMenuPanel : MonoBehaviour
 
     public void Player_ClickReset()
     {
-
+        var ladders = allBuiltLadders.ToArray();
+        foreach (var ladder in ladders)
+        {
+            Destroy(ladder);
+        }
+        allBuiltLadders.Clear();
     }
 
     public void Player_ClickBuild()
     {
-        this.open = !this.open;
+        this.open = true;
         GameEvents.Raise(GameEvents.OnBuildModeActiveChanged, this.open);
     }
 
     public void Player_ClickPlay()
     {
-
+        this.open = false;
+        GameEvents.Raise(GameEvents.OnBuildModeActiveChanged, this.open);
     }
 
+    List<GameObject> allBuiltLadders = new List<GameObject>();
     public void Player_ClickItem(int index)
     {
         bool canBuild = open && progress > 0.95f;
@@ -156,7 +163,9 @@ public class InGameBottomMenuPanel : MonoBehaviour
         var item = items[index];
         var pos = Camera.main.transform.position;
         pos.z = 0;
-        Instantiate(item.prefab, pos, Quaternion.identity, null);
+        var ladder = Instantiate(item.prefab, pos, Quaternion.identity, null);
+        allBuiltLadders.Add(ladder);
+
         items.RemoveAt(index);
         RefillItems(index);
     }
