@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
         leftWallSprite.gameObject.SetActive(false);
         rightWallSprite.gameObject.SetActive(false);
+
+        gameManager.RegisterCheckpoint(transform.position);
     }
 
     // Update is called once per frame

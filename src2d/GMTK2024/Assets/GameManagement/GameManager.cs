@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public interface IGameManager
 {
     bool BuildActive { get; }
-
-    void GameOver();
+    void Respawn(Transform player);
+    void RegisterCheckpoint(Vector3 checkpointPos);
 }
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public bool BuildActive => buildActive;
     private bool buildActive;
+    private Vector3 currentCheckpointPos;
 
     private void Awake()
     {
@@ -34,8 +35,17 @@ public class GameManager : MonoBehaviour, IGameManager
         this.buildActive = buildActive;
     }
 
-    public void GameOver()
+    public void Respawn(Transform player)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        player.position = currentCheckpointPos;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+    public void RegisterCheckpoint(Vector3 checkpointPos)
+    {
+        if (currentCheckpointPos.x < checkpointPos.x)
+        {
+            currentCheckpointPos = checkpointPos;
+        }
     }
 }

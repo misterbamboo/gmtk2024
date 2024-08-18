@@ -19,7 +19,7 @@ public class GameOverManager : MonoBehaviour
         var player = collision.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.Respawn(player.transform);
         }
     }
 }
