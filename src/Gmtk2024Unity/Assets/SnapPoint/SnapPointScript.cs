@@ -96,7 +96,8 @@ public class SnapPointScript : MonoBehaviour
 
     private void TriggerSnap(DraggableScript otherDraggable, SnapPointScript otherSnap)
     {
-        //print("otherSnapPos: " + otherSnap.transform.position + " otherDraggablePos: " + otherDraggable.transform.position);
+        print("otherSnapPos: " + otherSnap.transform.position + " otherDraggablePos: " + otherDraggable.transform.position);
+        print("this: " + this.name + " otherSnap " + otherSnap.name + " otherDraggable: " + otherDraggable.name + " offset: " + currentDraggableOffset);
         currentDraggableOffset = otherSnap.transform.position - otherDraggable.transform.position;
         currentDraggable = otherDraggable;
         otherDraggable.SnapTo(this, currentDraggableOffset);

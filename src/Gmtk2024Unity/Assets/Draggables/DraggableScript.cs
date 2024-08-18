@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class DraggableScript : MonoBehaviour
 {
+    [SerializeField] bool activateLogs = false;
     [SerializeField] float snapSpeed = 20f;
 
     private Camera _mainCamera;
@@ -33,7 +35,7 @@ public class DraggableScript : MonoBehaviour
         {
             FollowSnap();
         }
-        else
+        else if (_drag)
         {
             FollowDrag();
         }
@@ -51,12 +53,12 @@ public class DraggableScript : MonoBehaviour
         var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Input.mousePosition), 100, layerMask);
         if (rayHit.collider && rayHit.collider.GetComponent<DraggableScript>())
         {
-            //print("in");
+            Log("in");
             _target = rayHit.collider.transform;
         }
         else
         {
-            //print("out");
+            Log("out");
             _target = null;
         }
 
@@ -65,6 +67,8 @@ public class DraggableScript : MonoBehaviour
             GameEvents.Raise(GameEvents.OnDraggableHover, _target != null);
         }
     }
+
+
 
     private void UpdateDragStatus()
     {
@@ -75,7 +79,7 @@ public class DraggableScript : MonoBehaviour
             rb2d.angularVelocity = 0;
             rb2d.freezeRotation = true;
             SnapPointScript.ShowAll();
-            //print("start drag");
+            Log("start drag");
         }
         else if (_drag && Input.GetMouseButtonUp(0))
         {
@@ -95,12 +99,13 @@ public class DraggableScript : MonoBehaviour
                 rb2d.freezeRotation = true;
                 rb2d.isKinematic = true;
             }
-            //print("end drag");
+            Log("end drag");
         }
     }
 
     private void FollowSnap()
     {
+        Log($"followSnap - [this: {this.name}, _snapTarget: {_snapTarget.name}]");
         _snapTime += Time.deltaTime;
         if (_snapTime > 1)
         {
@@ -121,12 +126,13 @@ public class DraggableScript : MonoBehaviour
     {
         if (!_drag) return;
 
+        Log($"followDrag - [this: {this.name}]");
         var mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = -_mainCamera.transform.position.z;
         var mousePos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);
         mousePos.z = 0;
         _target.position = mousePos;
-        //print(Input.mousePosition.ToString() + " " + mousePos.ToString() + " " + pos.ToString() + " " + _target.position.ToString());
+        Log($"mousePosition: {Input.mousePosition} mouseScreenPos:{mouseScreenPos} mousePos:{mousePos} _targetPos:{_target.position}");
     }
 
     internal void SnapTo(SnapPointScript snapPointScript, Vector3 snapOffset)
@@ -134,7 +140,7 @@ public class DraggableScript : MonoBehaviour
         _snapTarget = snapPointScript.transform;
         _snapTargetOffset = snapOffset;
 
-        //print("_snapTargetOffset: " + _snapTargetOffset);
+        Log("_snapTargetOffset: " + _snapTargetOffset);
 
         _snapTime = 0;
         _initialLerpPosition = transform.position;
@@ -143,5 +149,13 @@ public class DraggableScript : MonoBehaviour
     internal void Unsnap()
     {
         _snapTarget = null;
+    }
+
+    private void Log(string log)
+    {
+        if (activateLogs)
+        {
+            print(log);
+        }
     }
 }
