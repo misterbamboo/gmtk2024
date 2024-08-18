@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2707411197215060325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -0.6, z: 0}
+  m_LocalPosition: {x: -0.528, y: -0.788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 3670773954131289937}
   - component: {fileID: 7919741935324259321}
   m_Layer: 0
-  m_Name: Ladder_1
+  m_Name: Ladder_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,20 +258,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5913842, y: 0.6114635}
-      - {x: -0.5845211, y: -0.614112}
-      - {x: -0.47676402, y: -0.589683}
-      - {x: -0.47403356, y: -0.38421082}
-      - {x: -0.21436054, y: -0.38820925}
-      - {x: -0.19953701, y: -0.5860786}
-      - {x: -0.11277437, y: -0.6005758}
-      - {x: -0.11154288, y: 0.19870895}
-      - {x: 0.56267595, y: 0.19726145}
-      - {x: 0.5554259, y: 0.27623925}
-      - {x: 0.43688458, y: 0.30398238}
-      - {x: 0.378224, y: 0.5036149}
-      - {x: 0.5219896, y: 0.49488238}
-      - {x: 0.5581062, y: 0.6060999}
+    - - {x: -0.3151898, y: -0.75116354}
+      - {x: -0.34582752, y: -0.5399869}
+      - {x: -0.696824, y: -0.4840576}
+      - {x: -0.7038248, y: -0.7951983}
+      - {x: -0.79157794, y: -0.79466295}
+      - {x: -0.8187176, y: 0.18358582}
+      - {x: 0.24845636, y: 0.2189495}
+      - {x: 0.25263032, y: 0.7977084}
+      - {x: 0.38210174, y: 0.735413}
+      - {x: 0.3801352, y: 0.57052886}
+      - {x: 0.6702007, y: 0.5972568}
+      - {x: 0.70181584, y: 0.7779506}
+      - {x: 0.7998974, y: 0.7456706}
+      - {x: 0.8210284, y: -0.3454606}
+      - {x: -0.24082977, y: -0.34755754}
+      - {x: -0.22202146, y: -0.7946377}
   m_UseDelaunayMesh: 0
 --- !u!50 &7919741935324259321
 Rigidbody2D:
@@ -457,7 +459,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1535999873, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+  m_Sprite: {fileID: 1683517148, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -495,7 +497,7 @@ Transform:
   m_GameObject: {fileID: 7216376230452313800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.537, y: 0.393, z: 0}
+  m_LocalPosition: {x: 0.522, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

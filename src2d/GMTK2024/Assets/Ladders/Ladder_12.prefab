@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2707411197215060325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -0.6, z: 0}
+  m_LocalPosition: {x: 0.426, y: -0.949, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 3670773954131289937}
   - component: {fileID: 7919741935324259321}
   m_Layer: 0
-  m_Name: Ladder_1
+  m_Name: Ladder_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,20 +258,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5913842, y: 0.6114635}
-      - {x: -0.5845211, y: -0.614112}
-      - {x: -0.47676402, y: -0.589683}
-      - {x: -0.47403356, y: -0.38421082}
-      - {x: -0.21436054, y: -0.38820925}
-      - {x: -0.19953701, y: -0.5860786}
-      - {x: -0.11277437, y: -0.6005758}
-      - {x: -0.11154288, y: 0.19870895}
-      - {x: 0.56267595, y: 0.19726145}
-      - {x: 0.5554259, y: 0.27623925}
-      - {x: 0.43688458, y: 0.30398238}
-      - {x: 0.378224, y: 0.5036149}
-      - {x: 0.5219896, y: 0.49488238}
-      - {x: 0.5581062, y: 0.6060999}
+    - - {x: 0.65149367, y: 0.89490247}
+      - {x: 0.56903833, y: 0.976926}
+      - {x: -0.6373312, y: 0.9643796}
+      - {x: -0.65461826, y: 0.5129908}
+      - {x: 0.19373238, y: 0.5046802}
+      - {x: 0.19457497, y: -0.91431874}
+      - {x: 0.29759657, y: -0.96970975}
+      - {x: 0.5911021, y: -0.96731704}
+      - {x: 0.6488989, y: -0.9035733}
   m_UseDelaunayMesh: 0
 --- !u!50 &7919741935324259321
 Rigidbody2D:
@@ -457,7 +452,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1535999873, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
+  m_Sprite: {fileID: -824538793, guid: bee4fcf23bf03ed4ba2fb21532f68650, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -495,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 7216376230452313800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.537, y: 0.393, z: 0}
+  m_LocalPosition: {x: -0.638, y: 0.728, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
