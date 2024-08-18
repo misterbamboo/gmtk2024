@@ -18,13 +18,13 @@ public class SnapGroupDrag
         this.mainCamera = mainCamera;
     }
 
-    internal void CheckRequestDrag(bool isHover)
+    internal void CheckRequestDrag(bool isHover, bool inBuildMode)
     {
         if (isHover && Input.GetMouseButtonDown(0))
         {
             DragRequested = true;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (!inBuildMode || Input.GetMouseButtonUp(0))
         {
             DragRequested = false;
         }

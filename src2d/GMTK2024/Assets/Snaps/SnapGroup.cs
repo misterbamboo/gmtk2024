@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -31,8 +32,8 @@ public class SnapGroup : MonoBehaviour
     {
         Init();
 
-        mouseHoverCheck.CheckHover();
-        snapGroupDrag.CheckRequestDrag(mouseHoverCheck.IsHover);
+        mouseHoverCheck.CheckHover(gameManager.BuildActive);
+        snapGroupDrag.CheckRequestDrag(mouseHoverCheck.IsHover, gameManager.BuildActive);
 
         if (snapGroupDrag.DragRequested)
         {
@@ -58,10 +59,13 @@ public class SnapGroup : MonoBehaviour
             TrySnapNearest();
             snapGroupDrag.EndDrag();
         }
+        if (!gameManager.BuildActive)
+        {
+            snapGroupDrag.EndDrag();
+        }
 
         ChangeRigidBodyBehavior();
-
-        //print($"{mouseHoverCheck.IsHover} {mouseHoverCheck.HoverOffset} {snapGroupDrag.DragRequested}");
+        DetectBuildModeChange();
     }
 
     private void LetSnapBeAttracted()
@@ -117,11 +121,6 @@ public class SnapGroup : MonoBehaviour
         if (rb2d == null) return;
 
         var anyInnerSnapIsSnapped = innerSnaps.Any(s => s != null && s.SnapTo != null);
-        if (gameManager == null || snapGroupDrag == null)
-        {
-            print(gameManager + " | " + snapGroupDrag);
-        }
-
         if (gameManager.BuildActive || snapGroupDrag.IsDragging || anyInnerSnapIsSnapped)
         {
             rb2d.velocity = Vector2.zero;
@@ -138,5 +137,26 @@ public class SnapGroup : MonoBehaviour
     {
         var pos = Vector2.Lerp(rb2d.position, rb2d.position + movement, 0.99f);
         rb2d.MovePosition(pos);
+    }
+
+    private bool previousBuildActive;
+    private Color invisible = new Color(1, 1, 1, 0f);
+    private void DetectBuildModeChange()
+    {
+        if (gameManager.BuildActive != previousBuildActive)
+        {
+            foreach (var innerSnap in innerSnaps)
+            {
+                if (innerSnap != null)
+                {
+                    var spriteRenderers = innerSnap.gameObject.GetComponentsInChildren<SpriteRenderer>();
+                    foreach (var spriteRenderer in spriteRenderers)
+                    {
+                        spriteRenderer.color = gameManager.BuildActive ? innerSnap.DefaultColor : invisible;
+                    }
+                }
+            }
+        }
+        previousBuildActive = gameManager.BuildActive;
     }
 }

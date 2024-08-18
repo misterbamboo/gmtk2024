@@ -19,10 +19,15 @@ public class SnapGroupMouseHoverCheck
         this.colliderZone = colliderZone;
     }
 
-    internal void CheckHover()
+    internal void CheckHover(bool inBuildMode)
     {
         var previousHover = isHover;
-        CheckMouseHover();
+
+        if (inBuildMode)
+        {
+            CheckMouseHover();
+        }
+
         if (previousHover != isHover)
         {
             GameEvents.Raise(GameEvents.OnDraggableHover, isHover);
