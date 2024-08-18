@@ -277,7 +277,7 @@ MonoBehaviour:
   rightWallSprite: {fileID: 4912452510182476081}
   jumpForce: 5
   releaseDownForce: 0.1
-  lateralForce: 5
+  lateralForce: 2
   slopeCheckCenter: {fileID: 6151779841904673558}
   slopeCheckLength: 0.15
   maxSlopeAngle: 50
