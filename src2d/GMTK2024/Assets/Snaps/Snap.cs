@@ -13,9 +13,6 @@ public class Snap : MonoBehaviour
     private float attractedTime;
     private SnapGroup snapGroup;
 
-    public Color DefaultColor => defaultColor;
-    private Color defaultColor;
-
     public Vector3 AttractedDirection()
     {
         var direction = Vector3.zero;
@@ -60,7 +57,6 @@ public class Snap : MonoBehaviour
     private void Start()
     {
         snapGroup = GetComponentInParent<SnapGroup>();
-        defaultColor = GetComponentInChildren<SpriteRenderer>().color;
     }
 
     private void Update()

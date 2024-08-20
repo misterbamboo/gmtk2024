@@ -65,7 +65,6 @@ public class SnapGroup : MonoBehaviour
         }
 
         ChangeRigidBodyBehavior();
-        DetectBuildModeChange();
     }
 
     private void LetSnapBeAttracted()
@@ -137,26 +136,5 @@ public class SnapGroup : MonoBehaviour
     {
         var pos = Vector2.Lerp(rb2d.position, rb2d.position + movement, 0.99f);
         rb2d.MovePosition(pos);
-    }
-
-    private bool previousBuildActive;
-    private Color invisible = new Color(1, 1, 1, 0f);
-    private void DetectBuildModeChange()
-    {
-        if (gameManager.BuildActive != previousBuildActive)
-        {
-            foreach (var innerSnap in innerSnaps)
-            {
-                if (innerSnap != null)
-                {
-                    var spriteRenderers = innerSnap.gameObject.GetComponentsInChildren<SpriteRenderer>();
-                    foreach (var spriteRenderer in spriteRenderers)
-                    {
-                        spriteRenderer.color = gameManager.BuildActive ? innerSnap.DefaultColor : invisible;
-                    }
-                }
-            }
-        }
-        previousBuildActive = gameManager.BuildActive;
     }
 }
