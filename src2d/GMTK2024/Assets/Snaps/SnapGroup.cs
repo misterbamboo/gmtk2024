@@ -49,12 +49,12 @@ public class SnapGroup : MonoBehaviour
             }
         }
 
-        if (snapGroupDrag.ScaleRequested)
+        if (mouseHoverCheck.IsHover && snapGroupDrag.ScaleRequested)
         {
             snapGroupMouseScale.ApplyScale(snapGroupDrag.ScaleFactor);
         }
 
-        if (snapGroupDrag.RotateRequested)
+        if (mouseHoverCheck.IsHover && snapGroupDrag.RotateRequested)
         {
             snapGroupMouseRotation.ApplyRotation(-30f);
         }
