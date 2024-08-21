@@ -9,6 +9,7 @@ public class SnapGroup : MonoBehaviour
     private SnapGroupMouseHoverCheck mouseHoverCheck;
     private SnapGroupDrag snapGroupDrag;
     private SnapGroupMouseRotation snapGroupMouseRotation;
+    private SnapGroupMouseScale snapGroupMouseScale;
     private List<Snap> innerSnaps;
     private IGameManager gameManager;
 
@@ -24,6 +25,7 @@ public class SnapGroup : MonoBehaviour
         mouseHoverCheck = new SnapGroupMouseHoverCheck(transform, mainCamera, colliderZone);
         snapGroupDrag = new SnapGroupDrag(transform, mainCamera);
         snapGroupMouseRotation = new SnapGroupMouseRotation(rb2d);
+        snapGroupMouseScale = new SnapGroupMouseScale(rb2d);
         gameManager = GameManager.Instance;
         initialized = true;
     }
@@ -40,7 +42,6 @@ public class SnapGroup : MonoBehaviour
             snapGroupDrag.StartOrContinueDrag(mouseHoverCheck.HoverOffset);
             if (snapGroupDrag.StartDragging)
             {
-                snapGroupMouseRotation.KeepInitialRotation();
                 foreach (var snap in innerSnaps)
                 {
                     snap.Unsnap();
@@ -48,10 +49,19 @@ public class SnapGroup : MonoBehaviour
             }
         }
 
+        if (snapGroupDrag.ScaleRequested)
+        {
+            snapGroupMouseScale.ApplyScale(snapGroupDrag.ScaleFactor);
+        }
+
+        if (snapGroupDrag.RotateRequested)
+        {
+            snapGroupMouseRotation.ApplyRotation(-30f);
+        }
+
         if (snapGroupDrag.IsDragging)
         {
             LetSnapBeAttracted();
-            snapGroupMouseRotation.ApplyRotationWithMouseDelta();
         }
 
         if (snapGroupDrag.IsDragging && !snapGroupDrag.DragRequested)

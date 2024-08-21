@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SnapGroupDrag
 {
     public bool DragRequested { get; private set; }
-    public bool ResizeMode { get; private set; }
-    private Vector2 startResizeMousePos;
-    private float startResizeScale;
-
+    public bool RotateRequested { get; private set; }
+    public bool ScaleRequested { get; private set; }
+    public float ScaleFactor { get; private set; }
 
     public bool IsDragging { get; private set; }
     public Vector2 DraggingOffset { get; private set; }
@@ -23,29 +23,33 @@ public class SnapGroupDrag
 
     internal void CheckRequestDrag(bool isHover, bool inBuildMode)
     {
+        RotateRequested = false;
+        ScaleRequested = false;
+        ScaleFactor = 0;
+
         var leftClickDown = Input.GetMouseButtonDown(0);
-        var rightClickDown = Input.GetMouseButtonDown(1);
-        var clickDown = (leftClickDown || rightClickDown);
-        if (isHover && clickDown)
+        if (isHover && leftClickDown)
         {
             DragRequested = true;
-            ResizeMode = rightClickDown;
-            if (ResizeMode)
-            {
-                var mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                startResizeMousePos = (Vector2)mousePos + DraggingOffset;
-                startResizeScale = transform.localScale.x;
-            }
+        }
+
+        var rightClickDown = Input.GetMouseButtonDown(1);
+        if (isHover && rightClickDown)
+        {
+            RotateRequested = rightClickDown;
+        }
+
+        var scaleFactor = (int)Mathf.Clamp(Input.mouseScrollDelta.y, -1f, 1f);
+        if (scaleFactor != 0)
+        {
+            ScaleRequested = true;
+            ScaleFactor = scaleFactor;
         }
 
         var leftClickUp = Input.GetMouseButtonUp(0);
-        var rightClickUp = Input.GetMouseButtonUp(1);
-        var clickUp = (leftClickUp || rightClickUp);
-
-        if (!inBuildMode || clickUp)
+        if (!inBuildMode || leftClickUp)
         {
             DragRequested = false;
-            ResizeMode = false;
         }
     }
 
@@ -61,18 +65,7 @@ public class SnapGroupDrag
 
         var mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var newPos = (Vector2)mousePos + DraggingOffset;
-        if (ResizeMode)
-        {
-            var xDiff = (newPos - startResizeMousePos).x;
-            var targetScale = startResizeScale + xDiff;
-            var scale = Mathf.Clamp(targetScale, 0.5f, 1.5f);
-            transform.localScale = new Vector3(scale, scale, 1);
-        }
-        // MoveMode
-        else
-        {
-            transform.position = newPos;
-        }
+        transform.position = newPos;
     }
 
     internal void EndDrag()
